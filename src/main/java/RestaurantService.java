@@ -30,10 +30,18 @@ public class RestaurantService {
     }
 
     public List<Restaurant> getRestaurants() {
+
         return restaurants;
     }
 
     public int getTotalAmount(Restaurant restaurant, List<String> itemList){
-        return 0;
+        int totalAmount = 0;
+        List<Item> menu = restaurant.getMenu();
+        for(Item eachItem : menu){
+            if (itemList.contains(eachItem.getName())){
+                totalAmount += eachItem.getPrice();
+            }
+        }
+        return totalAmount;
     }
 }

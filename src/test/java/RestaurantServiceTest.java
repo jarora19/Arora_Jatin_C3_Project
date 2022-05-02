@@ -29,7 +29,6 @@ class RestaurantServiceTest {
         assertEquals(restaurant.getName(), service.findRestaurantByName("Amelie's Cafe").getName());
     }
 
-    //You may watch the video by Muthukumaran on how to write exceptions in Course 3: Testing and Version control: Optional content
     @Test
     public void searching_for_non_existing_restaurant_should_throw_exception() throws restaurantNotFoundException {
         assertThrows(restaurantNotFoundException.class,
@@ -76,7 +75,12 @@ class RestaurantServiceTest {
 
     }
 
+    @Test
+    public void get_total_amount_to_0_if_noItem_is_added_to_basket(){
+        List<String> items = new ArrayList<>();
 
-
+        int totalAmount = service.getTotalAmount(restaurant, items);
+        assertEquals(0, totalAmount);
+    }
     //<<<<<<<<<<<<<<<<<<<<GET TOTAL AMOUNT>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
