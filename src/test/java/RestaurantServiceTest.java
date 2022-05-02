@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.*;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,7 +34,7 @@ class RestaurantServiceTest {
     public void searching_for_non_existing_restaurant_should_throw_exception() throws restaurantNotFoundException {
         assertThrows(restaurantNotFoundException.class,
                 () -> service.findRestaurantByName("Pantry d'or"));
-        
+
     }
     //<<<<<<<<<<<<<<<<<<<<SEARCHING>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -61,4 +63,20 @@ class RestaurantServiceTest {
         assertEquals(initialNumberOfRestaurants + 1, service.getRestaurants().size());
     }
     //<<<<<<<<<<<<<<<<<<<<ADMIN: ADDING & REMOVING RESTAURANTS>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //>>>>>>>>>>>>>>>>>>>>>>GET TOTAL AMOUNT<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    @Test
+    public void get_total_amount_to_119_after_adding_sweet_corn_soup_to_basket(){
+        List<String> items = new ArrayList<>();
+        items.add("Sweet Corn Soup");
+
+        int totalAmount = service.getTotalAmount(restaurant, items);
+        assertEquals(119, totalAmount);
+
+    }
+
+
+
+    //<<<<<<<<<<<<<<<<<<<<GET TOTAL AMOUNT>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
